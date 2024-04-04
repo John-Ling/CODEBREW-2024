@@ -1,44 +1,42 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Task } from "./types";
 import imgUrl from './assets/media/logo.png'
 import "./assets/css/fonts.css";
-import "./assets/css/loadpage.css";
+import "./assets/css/load_page.css";
 
 const LoadPage = () => {
-    const [tasks, setTasks] = useState<string>("");
+    const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
         let blocked: boolean = false;
-        const call_api = async (llmQuery: string): Promise<[string, number][]> => {
+        const call_api = async (llmQuery: string): Promise<any> => {
             let escaped: string = llmQuery.toString().replace(/'/g, "'\''");
-            const response = await fetch("http://127.0.0.1:5000/query", {
+            const response: Response = await fetch("http://127.0.0.1:5000/query", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ "user_query": escaped })
             });
-            const json = await response.json();
-            console.log(json);
+            let data = await response.json();
+            if (!blocked) {
+                (JSON.parse(data).tasks).forEach((task: Task) => {
+                    setTasks(oldState => [...oldState, {task: task.task, priority: task.priority}]);
+                });
+            }
             setLoading(false);
-            return json["tasks"];
         };
 
-        if (tasks === "") {
-            let query: string | null = searchParams.get("query");
-
-            if (query !== null) {
-                if (!blocked) {
-                    call_api(query);
-                }
-            }
-            setTasks("a");
+        let query: string | null = searchParams.get("query");
+        if (query !== null) {
+            call_api(query);
         }
 
         return () => {
             blocked = true;
-        };
-    }, [tasks, searchParams]);
+        }
+    }, []);
 
     return (
         <>
@@ -51,6 +49,7 @@ const LoadPage = () => {
                 </div>
             ) : (
                 <div>
+                    {tasks.map((task: Task) => <p>{task.task} {task.priority}</p>)}
                 </div>
             )}
         </>
