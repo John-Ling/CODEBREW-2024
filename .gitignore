@@ -5,8 +5,8 @@ backend/lib/
 backend/lib64/
 backend/lib64
 backend/pyvenv.cfg
+backend/src/.env
 backend/.env
-backend/.venv/
 
 # frontend
 frontend/node_modules
