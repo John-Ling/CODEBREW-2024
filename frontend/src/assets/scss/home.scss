@@ -1,0 +1,18 @@
+@use "./colours.scss" as *;
+
+html {
+    background-color: $background;
+    color: $text;
+    font-family: "meslolgs_nfregular";
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#main-view {
+    margin-top: 10vh;
+}
