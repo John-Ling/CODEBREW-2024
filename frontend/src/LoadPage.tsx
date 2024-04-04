@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate, NavigateFunction } from "react-router-dom";
 import { Task } from "./types";
 import imgUrl from './assets/media/logo.png'
 import "./assets/css/fonts.css";
@@ -9,6 +9,7 @@ const LoadPage = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [searchParams] = useSearchParams();
+    const navigate: NavigateFunction = useNavigate();
 
     useEffect(() => {
         let blocked: boolean = false;
@@ -20,10 +21,13 @@ const LoadPage = () => {
                 body: JSON.stringify({ "user_query": escaped })
             });
             let data = await response.json();
+            let jsonTasks: Task[] = [];
             if (!blocked) {
                 (JSON.parse(data).tasks).forEach((task: Task) => {
-                    setTasks(oldState => [...oldState, {task: task.task, priority: task.priority}]);
+                    jsonTasks.push({task: task.task, priority: task.priority});
                 });
+                setTasks(jsonTasks);
+                navigate("/schedule", {state: {tasks: jsonTasks}});
             }
             setLoading(false);
         };
@@ -47,11 +51,7 @@ const LoadPage = () => {
                     </div>
                     <h2>Loading...</h2>
                 </div>
-            ) : (
-                <div>
-                    {tasks.map((task: Task) => <p>{task.task} {task.priority}</p>)}
-                </div>
-            )}
+            ) :  (<></>)}
         </>
     );
 };

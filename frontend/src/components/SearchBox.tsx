@@ -42,7 +42,6 @@ const SearchBox = () => {
                     autoComplete={"off"}
                     value={content}
                     onChange={handle_change}
-                    placeholder="Just Type"
                 />
                 <div>
                     <Link id="submit-button" onClick={handle_submit} to={`/loading?query=${content}`}>Submit</Link>

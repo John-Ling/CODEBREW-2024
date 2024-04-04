@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import LoadPage from "./LoadPage";
-import TodoView from "./TodoView";
+import ScheduleView from "./ScheduleView";
 
 // TODO
 // Make loading only accessible through app and not browser Done
@@ -16,7 +16,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="loading" element={<LoadPage/>}/>
-                    <Route path="todo" element={<TodoView/>}/>
+                    <Route path="schedule" element={<ScheduleView/>}/>
                 </Routes>
 		    </BrowserRouter>
         </>
