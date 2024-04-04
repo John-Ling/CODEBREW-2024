@@ -39,8 +39,11 @@ def get_tasks():
         }}
         Follow the rules stated below: 
         - The task should be a short description of what the task is
-        - Do not split a single task into two
+        - Do not split the task into preparing and attending
         - The priority should be an integer between 1 and 10
+        - The name of the task should be a concise version ideally under 5 words 
+        - Each task's names should have the first letter of their words capitalised
+        - An incredibly short timeframe such as something due today will have a score of 10 while something due in a few weeks or months will have a score close to 0. A task with no timeframe will have a score of 0.
 
         Here are some background information: 
         - Current Date Time: {current_datetime}
@@ -48,7 +51,7 @@ def get_tasks():
 
     client = anthropic.Anthropic(api_key=key)
     message = client.messages.create(
-        model="claude-3-opus-20240229",
+        model="claude-3-haiku-20240307",
         system=system_prompt,
         max_tokens=1024,
         messages=[
