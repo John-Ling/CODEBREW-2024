@@ -1,16 +1,19 @@
-import SearchBar from "./components/SearchBar";
-import "./assets/css/index.css";
-import "./assets/css/fonts.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+
+// TODO
+// Make loading only accessible through app and not browser
 
 function App() {
     return (
         <>
-            <main id="main-view">
-                <h1>What's Happening Today?</h1>
-                <SearchBar></SearchBar>
-            </main>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                </Routes>
+		    </BrowserRouter>
         </>
-    );
+    )
 }
 
 export default App;

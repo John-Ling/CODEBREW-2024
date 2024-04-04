@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, useRef } from "react";
 import "../assets/css/search_box.css";
 
-const SearchBar = () => {
+const SearchBox = () => {
     const [content, setContent] = useState<string>("");
     const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -45,4 +45,4 @@ const SearchBar = () => {
 
 
 
-export default SearchBar;
+export default SearchBox;
