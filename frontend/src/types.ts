@@ -1,4 +1,4 @@
 export type Task =  {
-    name: string;
+    task: string;
     priority: number;
 }

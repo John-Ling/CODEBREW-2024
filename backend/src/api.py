@@ -38,16 +38,17 @@ def get_tasks():
         {
             "tasks": [
                 {
-                    "task": "TASK NAME",
-                    "priority": PRIORITY
+                    "task": "Task Name",
+                    "priority": 10
                 },
                 {
-                    "task": "TASK NAME",
-                    "priority": PRIORITY
+                    "task": "Task Name",
+                    "priority": 0
                 },
             ]
         }
         The task name should be a short description of what the task is ideally under 7 words.
+        The first letter in each word of the task name should be capitalised.
         The task name may also incorporate the timeframe in its name.
         You are only concerned with what can be done today. 
         If the user talks about a meeting tomorrow your tasks for them would be to prepare for the meeting not attend it.
