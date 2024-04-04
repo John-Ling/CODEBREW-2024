@@ -1,8 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from dotenv import load_dotenv, find_dotenv
 import os
 import anthropic
 import datetime
+
+# change later
+ORIGIN = '*'
 
 app = Flask(__name__)
 
@@ -10,8 +13,15 @@ app = Flask(__name__)
 load_dotenv(find_dotenv())
 key = os.environ.get("API_KEY")
 
-@app.route('/query', methods=['POST'])
+@app.route('/query', methods=['POST', "OPTIONS"])
 def get_tasks():
+    if request.method == "OPTIONS":
+        return Response(headers={
+            "access-control-allow-origin": ORIGIN,
+            "access-control-allow-headers": ORIGIN,
+            "access-control-allow-methods": ORIGIN
+        })
+
     user_query = request.json.get('user_query')
 
     # Get current date time
@@ -54,7 +64,9 @@ def get_tasks():
         ]
     )
     
-    return jsonify(message.content[0].text.splitlines())
+    response = jsonify(message.content[0].text)
+    response.headers.add("access-control-allow-origin", ORIGIN)
+    return response
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", debug=True)
