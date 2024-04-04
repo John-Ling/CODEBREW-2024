@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify, Response
 from dotenv import load_dotenv, find_dotenv
+from ics import Calendar, Event
+import json
+import base64
 import os
 import anthropic
 import datetime
@@ -73,6 +76,32 @@ def get_tasks():
     response = jsonify(message.content[0].text)
     response.headers.add("access-control-allow-origin", ORIGIN)
     return response
+@app.route('/calendar', methods=['POST'])
+def generate_calendar():
+    """Returns base64 encoded ics calendar as json object"""
+    data = json.loads(request.data)
+    tasks = data['tasks']
+    priorities = [task['priority'] for task in tasks]
+
+    cal = Calendar()
+
+    for i, task in enumerate(tasks):
+        event = Event()
+        event.name = task['task']
+        event.begin = '20240101T000000Z'
+        event.priority = priorities[i]
+        cal.events.add(event)
+
+    ics_calendar = cal.serialize()
+    ics_calendar_base64 = base64.b64encode(ics_calendar.encode('utf-8')).decode('utf-8')
+
+    response = {
+        'ics': ics_calendar_base64
+    }
+
+    return jsonify(response)
+
+
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", debug=True)

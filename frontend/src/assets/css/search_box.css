@@ -6,14 +6,12 @@
 #search-bar {
   color: #F0F0F0;
   background-color: #2e2e2e;
-  width: clamp(200px, 30vw, 60vw);
+  width: clamp(300px, 30vw, 60vw);
   font-size: 0.9rem;
   padding: 0.75rem 1.25rem;
-  margin-right: 1rem;
+  margin: 1rem;
   border: solid 1px #2e2e2e;
   border-radius: 5px;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
   resize: none;
   overflow-wrap: break-word;
 }
@@ -32,6 +30,12 @@
   background-color: #fd5502;
   color: #000000;
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  #search-box {
+    flex-direction: column-reverse;
+  }
 }
 
 /*# sourceMappingURL=search_box.css.map */
