@@ -56,13 +56,12 @@ def get_tasks():
         A incredibly urgent task due today would have a score of 10. A task due tomorrow or in a very small timeframe will have a high score.
         Something due in a few weeks or months will have a score close to 0. 
         A task with no timeframe will have a score of 0.
-
         The current time is: 
         """ + current_datetime
 
     client = anthropic.Anthropic(api_key=key)
     message = client.messages.create(
-        model="claude-3-opus-20240229",
+        model="claude-3-haiku-20240307",
         system=system_prompt,
         max_tokens=1024,
         messages=[
