@@ -10,7 +10,7 @@ const LoadPage = () => {
         let blocked: boolean = false;
         const call_api = async (llmQuery: string): Promise<[string, number][]> => {
             let escaped: string = llmQuery.toString().replace(/'/g, "'\''");
-            const response = await fetch("http://127.0.0.1:8080/query", {
+            const response = await fetch("http://127.0.0.1:5000/query", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({"query": escaped})

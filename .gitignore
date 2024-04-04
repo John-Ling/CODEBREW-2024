@@ -5,7 +5,7 @@ backend/lib/
 backend/lib64/
 backend/lib64
 backend/pyvenv.cfg
-backend/.env
+backend/src/.env
 
 # frontend
 

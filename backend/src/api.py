@@ -10,41 +10,39 @@ app = Flask(__name__)
 load_dotenv(find_dotenv())
 key = os.environ.get("API_KEY")
 
-@app.route('/', methods=['POST'])
+@app.route('/query', methods=['POST'])
 def get_tasks():
     user_query = request.json.get('user_query')
 
     # Get current date time
     current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    system_prompt = f"""
+    system_prompt = """
         You are a professional time and calendar management assistant.
         You will take in the user query
-        Respond as json like the following: 
-        {{
+        Your response should be json with a list of tasks. An example with two tasks:
+        {
             "tasks": [
-                {{
-                "task": "Cook dinner",
-                "priority": 10
-                }},
-                {{
-                "task": "Revise for test next week",
-                "priority": 3
-                }},
-                {{
-                "task": "Plan trip for next year",
-                "priority": 1
-                }}
+                {
+                    "task": "TASK NAME",
+                    "priority": PRIORITY
+                },
+                {
+                    "task": "TASK NAME",
+                    "priority": PRIORITY
+                },
             ]
-        }}
-        Follow the rules stated below: 
-        - The task should be a short description of what the task is
-        - Do not split a single task into two
-        - The priority should be an integer between 1 and 10
+        }
+        The task name should be a short description of what the task is ideally under 5 words
+        You are only concerned with what can be done today. 
+        If the user talks about a meeting tomorrow your tasks for them would be to prepare for the meeting not attend it.
+        The priority should be an integer between 1 and 10 and based on the timeframe of the task. 
+        A task due today would have a score of 10. A task due tomorrow or in a very small timeframe will have a high score. 
+        Something due in a few weeks or months will have a score close to 0. 
+        A task with no timeframe will have a score of 0.
 
-        Here are some background information: 
-        - Current Date Time: {current_datetime}
-        """
+        The current time is: 
+        """ + current_datetime
 
     client = anthropic.Anthropic(api_key=key)
     message = client.messages.create(
@@ -56,11 +54,7 @@ def get_tasks():
         ]
     )
     
-    response = {
-        "tasks": message.content[0].text.splitlines()
-    }
-
-    return jsonify(response)
+    return jsonify(message.content[0].text.splitlines())
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="127.0.0.1", debug=True)
