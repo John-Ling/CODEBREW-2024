@@ -47,7 +47,7 @@ def get_tasks():
                 },
             ]
         }
-        The task name should be a short description of what the task is ideally under 10 words.
+        The task name should be a short description of what the task is ideally under 7 words.
         The task name may also incorporate the timeframe in its name.
         You are only concerned with what can be done today. 
         If the user talks about a meeting tomorrow your tasks for them would be to prepare for the meeting not attend it.

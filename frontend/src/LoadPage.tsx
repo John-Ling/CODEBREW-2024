@@ -10,10 +10,9 @@ const LoadPage = () => {
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        let blocked: boolean = false;
-        const call_api = async (llmQuery: string): Promise<[string, number][]> => {
+        const call_api = async (llmQuery: string): Promise<any> => {
             let escaped: string = llmQuery.toString().replace(/'/g, "'\''");
-            const response = await fetch("http://127.0.0.1:5000/query", {
+            const response: Response = await fetch("http://127.0.0.1:5000/query", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ "user_query": escaped })
