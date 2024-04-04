@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import imgUrl from './assets/media/logo.png'
 import "./assets/css/fonts.css";
-import "./assets/css/loadpage.css";
+import "./assets/css/load_page.css";
 
 const LoadPage = () => {
     const [tasks, setTasks] = useState<string>("");
@@ -27,16 +27,12 @@ const LoadPage = () => {
             let query: string | null = searchParams.get("query");
 
             if (query !== null) {
-                if (!blocked) {
-                    call_api(query);
-                }
+                call_api(query);
             }
             setTasks("a");
         }
 
-        return () => {
-            blocked = true;
-        };
+        return;
     }, [tasks, searchParams]);
 
     return (
