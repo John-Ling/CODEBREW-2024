@@ -1,15 +1,24 @@
-import { ChangeEvent, useState, useRef } from "react";
+import { useState, useRef, MouseEvent } from "react";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import "../assets/css/search_box.css";
+
+// TODO
+// maybe change data passing to state rather then query parameters
 
 const SearchBox = () => {
     const [content, setContent] = useState<string>("");
     const ref = useRef<HTMLTextAreaElement>(null);
+    const navigate: NavigateFunction = useNavigate();
 
-    const handle_submit = (e: ChangeEvent<HTMLAreaElement>) => {
+    const handle_submit = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
+        if (content === "") {
+            return;
+        }
+        navigate(`/loading?query=${content}`);
     }
 
-    const handle_change = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const handle_change = (e: any) => {
         setContent(e.target.value);
         if (ref.current) {
             ref.current.style.height = "auto";
@@ -35,7 +44,7 @@ const SearchBox = () => {
                     onChange={handle_change}
                 />
                 <div>
-                    <button id="submit-button">Submit</button>
+                    <Link id="submit-button" onClick={handle_submit} to={`/loading?query=${content}`}>Submit</Link>
                 </div>
             </div>
         </>
