@@ -11,8 +11,7 @@ const Home = () => {
 
     let tasks: string | null = localStorage.getItem("tasks");
     if (tasks === null) {
-        return <>
-        </>
+        return <></>
     }
 
     useEffect(() => {

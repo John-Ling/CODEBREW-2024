@@ -13,4 +13,9 @@
   padding: 0;
 }
 
+.empty-message {
+  text-align: center;
+  width: 40vh;
+}
+
 /*# sourceMappingURL=schedule_view.css.map */

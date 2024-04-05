@@ -17,7 +17,9 @@ const ScheduleView = () => {
     if (JSON.parse(retrieved).length != 0) {
         initialTasks = JSON.parse(retrieved);
     } else {
-        initialTasks = location.state.tasks; // otherwise retrieve data sent from loading screen
+        if (location.state !== null) {
+            initialTasks = location.state.tasks; // otherwise retrieve data sent from loading screen
+        }
     }
 
     const [tasks, setTasks] = useState<Task[]>(initialTasks);
@@ -51,7 +53,7 @@ const ScheduleView = () => {
         <>
             <h1 className="schedule-header">Today's Schedule</h1>
             <div className="schedule-table">
-                {tasks.map((task: Task) => <TodoItem key={task.id} task={task} remove_task={remove_task} />)}
+                {tasks.length != 0 ? tasks.map((task: Task) => <TodoItem key={task.id} task={task} remove_task={remove_task} />) : <p className="empty-message">Done for the Day!</p>}
             </div>
         </>
     )    
