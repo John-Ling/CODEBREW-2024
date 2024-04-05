@@ -6,6 +6,10 @@
   height: inherit;
   height: 90vh;
 }
+.loading-container img {
+  width: 30vh;
+  height: auto;
+}
 
 .spinner img {
   width: 30vh; /* Adjust the width as desired */

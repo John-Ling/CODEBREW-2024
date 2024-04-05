@@ -6,6 +6,11 @@
     align-items: center;
     height: inherit;
     height: 90vh;
+
+    img {
+        width: 30vh;
+        height: auto;
+    }
 }
 
 .spinner img {

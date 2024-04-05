@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import { useSearchParams, useNavigate, NavigateFunction } from "react-router-dom";
 import { Task } from "./types";
 import "./assets/css/load_page.css";
+import logo from "./assets/logo.png";
 
 const LoadPage = () => {
     const [loading, setLoading] = useState<boolean>(true);
@@ -45,7 +46,10 @@ const LoadPage = () => {
     return (
         <>
             {loading ? (
+                <div className="loading-container">
+                    <img src={logo}/>
                     <h2>Loading...</h2>
+                </div>
             ) :  (<></>)}
         </>
     );
