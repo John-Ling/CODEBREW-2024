@@ -42,11 +42,13 @@ def get_tasks():
             "tasks": [
                 {
                     "task": "Task Name",
-                    "priority": 10
+                    "priority": 10,
+                    "time_estimate": 1,
                 },
                 {
                     "task": "Task Name",
-                    "priority": 0
+                    "priority": 0,
+                    "time_estimate": 20,
                 },
             ]
         }
@@ -60,6 +62,8 @@ def get_tasks():
         A incredibly urgent task due today would have a score of 10. A task due tomorrow or in a very small timeframe will have a high score.
         Something due in a few weeks or months will have a score close to 0. 
         A task with no timeframe will have a score of 0.
+        The time estimate should be an time estimation in minutes
+
         The current time is: 
         """ + current_datetime
 
@@ -100,6 +104,8 @@ def generate_calendar():
     }
 
     return jsonify(response)
+
+
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", debug=True)
