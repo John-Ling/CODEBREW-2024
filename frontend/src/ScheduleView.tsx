@@ -6,8 +6,23 @@ import "./assets/css/schedule_view.css";
 
 const ScheduleView = () => {
     const location = useLocation();
-    const [tasks, setTasks] = useState<Task[]>(location.state.tasks);
-    console.log(tasks);
+
+    // load tasks if they are already present
+    let retrieved: string | null = localStorage.getItem("tasks");
+    if (retrieved === null ){
+        return <></>
+    }
+
+    let initialTasks: Task[] = [];
+    if (JSON.parse(retrieved).length != 0) {
+        initialTasks = JSON.parse(retrieved);
+    } else {
+        initialTasks = location.state.tasks; // otherwise retrieve data sent from loading screen
+    }
+
+    const [tasks, setTasks] = useState<Task[]>(initialTasks);
+    
+
     const compare_function = (a: Task, b: Task) => {
         if (a.priority < b.priority) {
             return 1;
@@ -21,11 +36,14 @@ const ScheduleView = () => {
     useEffect(() => {
         let ordered: Task[] = [...tasks].sort(compare_function);
         setTasks(ordered);
+        localStorage.setItem("tasks", JSON.stringify(ordered));
         return;
     }, []);
 
     const remove_task = ((id : string) => {
-        setTasks(tasks.filter((task: Task) => task.id !== id));
+        let filtered: Task[] = tasks.filter((task: Task) => task.id !== id);
+        setTasks(filtered);
+        localStorage.setItem("tasks", JSON.stringify(filtered));
         return;
     });
 
@@ -33,9 +51,8 @@ const ScheduleView = () => {
         <>
             <h1 className="schedule-header">Today's Schedule</h1>
             <div className="schedule-table">
-                {tasks.map((task: Task) => <TodoItem task={task} remove_task={remove_task} />)}
+                {tasks.map((task: Task) => <TodoItem key={task.id} task={task} remove_task={remove_task} />)}
             </div>
-        
         </>
     )    
 }
