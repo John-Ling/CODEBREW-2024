@@ -11,8 +11,7 @@ import datetime
 # change origin to something better
 # refine prompt for more nuanced answers
 
-# change later
-ORIGIN = '*'
+ORIGIN = 'http://localhost'
 
 app = Flask(__name__)
 
@@ -29,8 +28,7 @@ def get_tasks():
     if request.method == "OPTIONS":
         return Response(headers={
             "access-control-allow-origin": ORIGIN,
-            "access-control-allow-headers": ORIGIN,
-            "access-control-allow-methods": ORIGIN
+            "access-control-allow-headers": '*',
         })
 
     user_query = request.json.get('user_query')
