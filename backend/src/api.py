@@ -32,34 +32,49 @@ def get_tasks():
     user_query = request.json.get('user_query')
 
     # Get current date time
-    current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    current_datetime = datetime.datetime.now().strftime("%H:%M")
 
     system_prompt = """
         You are a professional time and calendar management assistant.
-        You will take in the user query
+        Using only the queries you will be provided with your job is to extract tasks from the query and return them.
         Your response should be json with a list of tasks. An example with two tasks:
         {
             "tasks": [
                 {
                     "task": "Task Name",
-                    "priority": 10
+                    "priority": 10,
+                    "startTime": "09:00",
+                    "endTime": "10:15"
                 },
                 {
                     "task": "Task Name",
-                    "priority": 0
+                    "priority": 0,
+                    "startTime": "11:00",
+                    "endTime": "15:30",
                 },
             ]
         }
-        The task name should be a short description of what the task is ideally under 7 words.
+
+        The task name should be a short description of what the task is ideally under 5 words.
         The first letter in each word of the task name should be capitalised.
         The task name may also incorporate the timeframe in its name.
+
         You are only concerned with what can be done today. 
         If the user talks about a meeting tomorrow your tasks for them would be to prepare for the meeting not attend it.
         Keep your tasks high level. Create 1 task for 1 event.
+
         The priority should be an integer between 1 and 10 and based on the timeframe of the task. 
         A incredibly urgent task due today would have a score of 10. A task due tomorrow or in a very small timeframe will have a high score.
         Something due in a few weeks or months will have a score close to 0. 
         A task with no timeframe will have a score of 0.
+        Tasks involved with academics or work such as revising, answering emails or chores should have higher priority then activities for leisure.
+
+        You will be provided with the current time. Within the next 8 hours,
+        for each task you should make an estimate in how long the task will take and give a start and end time based on the current time. 
+        Time should be in 24 hour mode in the format "HOURS:MINUTES".
+        The start times of two tasks should not overlap. They should be separate. 
+        The end times of two tasks should not overlap. They should be separate.
+
         The current time is: 
         """ + current_datetime
 
@@ -69,7 +84,7 @@ def get_tasks():
         system=system_prompt,
         max_tokens=1024,
         messages=[
-            {"role": "user", "content": user_query}
+            {"role": "user", "content": f"Query: {user_query}"}
         ]
     )
     

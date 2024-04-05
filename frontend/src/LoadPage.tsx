@@ -25,7 +25,7 @@ const LoadPage = () => {
             let tasks: Task[] = [];
             if (!blocked) {
                 (JSON.parse(data).tasks).forEach((task: Task) => {
-                    tasks.push({id: nanoid(), task: task.task, priority: task.priority});
+                    tasks.push({id: nanoid(), task: task.task, priority: task.priority, startTime: task.startTime, endTime: task.endTime});
                 });
 
                 navigate("/schedule", {state: {tasks: tasks}});
