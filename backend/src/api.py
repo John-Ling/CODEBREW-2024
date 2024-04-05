@@ -50,7 +50,7 @@ def get_tasks():
                     "task": "Task Name",
                     "priority": 0,
                     "startTime": "11:00",
-                    "endTime": "15:30",
+                    "endTime": "15:30"
                 },
             ]
         }
@@ -75,6 +75,7 @@ def get_tasks():
         The start times of two tasks should not overlap. They should be separate. 
         The end times of two tasks should not overlap. They should be separate.
         Events that should be done today should have an earlier start time then 
+        The time estimate should be an time estimation in minutes
 
         The current time is: 
         """ + current_datetime
@@ -116,6 +117,8 @@ def generate_calendar():
     }
 
     return jsonify(response)
+
+
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", debug=True)
