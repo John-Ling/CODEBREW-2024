@@ -10,6 +10,7 @@
 .todo-item:hover {
   background-color: #292929;
   border-left: solid 2px #e64d00;
+  color: #cccccc;
   cursor: pointer;
 }
 .todo-item:hover h3 {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { nanoid } from "nanoid";
 import { useSearchParams, useNavigate, NavigateFunction } from "react-router-dom";
 import { Task } from "./types";
 import imgUrl from './assets/media/logo.png'
@@ -24,7 +25,7 @@ const LoadPage = () => {
             let tasks: Task[] = [];
             if (!blocked) {
                 (JSON.parse(data).tasks).forEach((task: Task) => {
-                    tasks.push({task: task.task, priority: task.priority});
+                    tasks.push({id: nanoid(), task: task.task, priority: task.priority});
                 });
 
                 navigate("/schedule", {state: {tasks: tasks}});
