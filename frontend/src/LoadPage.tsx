@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { useSearchParams, useNavigate, NavigateFunction } from "react-router-dom";
 import { Task } from "./types";
-import imgUrl from './assets/media/logo.png'
 import "./assets/css/load_page.css";
 
 const LoadPage = () => {
