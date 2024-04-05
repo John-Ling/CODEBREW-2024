@@ -22,12 +22,12 @@
 #submit-button {
   color: #F0F0F0;
   background-color: #1b1b1b;
-  border: solid 1px #fd5502;
+  border: solid 1px #ff5500;
   padding: 0.5rem;
   text-decoration: none;
 }
 #submit-button:hover {
-  background-color: #fd5502;
+  background-color: #ff5500;
   color: #000000;
   cursor: pointer;
 }

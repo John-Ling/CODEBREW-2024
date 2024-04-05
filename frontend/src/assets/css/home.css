@@ -13,6 +13,7 @@ html {
 }
 #main-view h1 {
   margin-left: 15px;
+  border-bottom: solid 2px #ff5500;
 }
 
 /*# sourceMappingURL=home.css.map */

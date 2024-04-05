@@ -1,6 +1,5 @@
 import SearchBox from "./components/SearchBox";
 import "./assets/css/home.css";
-import "./assets/css/fonts.css";
 
 const Home = () => {
     return (

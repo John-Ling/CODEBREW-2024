@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate, NavigateFunction } from "react-router-dom";
 import { Task } from "./types";
 import imgUrl from './assets/media/logo.png'
-import "./assets/css/fonts.css";
 import "./assets/css/load_page.css";
 
 const LoadPage = () => {
-    const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [searchParams] = useSearchParams();
     const navigate: NavigateFunction = useNavigate();
@@ -21,13 +19,15 @@ const LoadPage = () => {
                 body: JSON.stringify({ "user_query": escaped })
             });
             let data = await response.json();
-            let jsonTasks: Task[] = [];
+
+            // generate tasks and then move to schedule view
+            let tasks: Task[] = [];
             if (!blocked) {
                 (JSON.parse(data).tasks).forEach((task: Task) => {
-                    jsonTasks.push({task: task.task, priority: task.priority});
+                    tasks.push({task: task.task, priority: task.priority});
                 });
-                setTasks(jsonTasks);
-                navigate("/schedule", {state: {tasks: jsonTasks}});
+
+                navigate("/schedule", {state: {tasks: tasks}});
             }
             setLoading(false);
         };
