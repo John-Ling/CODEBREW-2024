@@ -74,7 +74,7 @@ def get_tasks():
         Time should be in 24 hour mode in the format "HOURS:MINUTES".
         The start times of two tasks should not overlap. They should be separate. 
         The end times of two tasks should not overlap. They should be separate.
-        Events that should be done today should have an earlier start time then 
+        Events that should be done today should have an earlier start time then events that can be done tomorrow or events of low priority.
         The time estimate should be an time estimation in minutes
 
         The current time is: 
