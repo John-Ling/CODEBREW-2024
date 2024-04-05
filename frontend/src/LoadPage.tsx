@@ -46,12 +46,7 @@ const LoadPage = () => {
     return (
         <>
             {loading ? (
-                <div className="loading-container">
-                    <div className="spinner">
-                        <img src={imgUrl} alt="Logo" />
-                    </div>
                     <h2>Loading...</h2>
-                </div>
             ) :  (<></>)}
         </>
     );

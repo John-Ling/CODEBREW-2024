@@ -1,0 +1,4 @@
+src/vite-env.d.ts
+node_modules
+dist/
+npm-debug.log
