@@ -30,6 +30,7 @@ const TodoItem: React.FC<{task: Task, remove_task: (id: string) => void}> = ({ta
         <>
             <div className="todo-item" onClick={handle_click}>
                 <h3>{task.task}</h3>
+                <p className="time-estimate">{task.startTime} - {task.endTime}</p>
                 <p>Priority: {priority}</p>
             </div>
         </>
