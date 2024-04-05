@@ -116,13 +116,4 @@ def generate_calendar():
         'ics': ics_calendar_base64
     }
 
-<<<<<<< HEAD:backend/src/app.py
     return jsonify(response)
-
-
-
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True)
-=======
-    return jsonify(response)
->>>>>>> e857bca (Updated dockerfile for backend):backend/src/api.py
