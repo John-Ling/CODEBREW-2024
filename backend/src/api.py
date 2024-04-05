@@ -35,8 +35,8 @@ def get_tasks():
     current_datetime = datetime.datetime.now().strftime("%H:%M")
 
     system_prompt = """
-        You are a professional time and calendar management assistant.
-        Using only the queries you will be provided with your job is to extract tasks from the query and return them.
+        You are a restful API.
+        Using only the queries you will be provided, your job is to extract tasks from the query and return them.
         Your response should be json with a list of tasks. An example with two tasks:
         {
             "tasks": [
@@ -74,6 +74,7 @@ def get_tasks():
         Time should be in 24 hour mode in the format "HOURS:MINUTES".
         The start times of two tasks should not overlap. They should be separate. 
         The end times of two tasks should not overlap. They should be separate.
+        Events that should be done today should have an earlier start time then 
 
         The current time is: 
         """ + current_datetime
