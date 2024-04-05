@@ -24,7 +24,6 @@ const ScheduleView = () => {
 
     const [tasks, setTasks] = useState<Task[]>(initialTasks);
     
-
     const compare_function = (a: Task, b: Task) => {
         if (a.priority < b.priority) {
             return 1;

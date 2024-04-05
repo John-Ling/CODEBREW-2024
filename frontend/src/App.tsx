@@ -5,8 +5,6 @@ import ScheduleView from "./ScheduleView";
 import "./assets/css/fonts.css";
 
 // TODO
-// Make loading only accessible through app and not browser Done
-// Create interface for todo list
 // Secure routes so only accessible from app
 
 function App() {

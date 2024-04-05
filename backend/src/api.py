@@ -7,10 +7,6 @@ import os
 import anthropic
 import datetime
 
-# TODO
-# change origin to something better
-# refine prompt for more nuanced answers
-
 ORIGIN = 'http://localhost'
 
 app = Flask(__name__)

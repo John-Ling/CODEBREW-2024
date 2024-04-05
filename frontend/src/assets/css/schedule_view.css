@@ -1,5 +1,6 @@
 .schedule-header {
   border-bottom: solid 2px #ff5500;
+  width: 40vh;
 }
 
 .schedule-table-header {
@@ -11,6 +12,7 @@
 
 .schedule-table {
   padding: 0;
+  width: 40vh;
 }
 
 .empty-message {
