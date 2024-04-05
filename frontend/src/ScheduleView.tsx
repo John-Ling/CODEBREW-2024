@@ -7,7 +7,7 @@ import "./assets/css/schedule_view.css";
 const ScheduleView = () => {
     const location = useLocation();
     const [tasks, setTasks] = useState<Task[]>(location.state.tasks);
-
+    console.log(tasks);
     const compare_function = (a: Task, b: Task) => {
         if (a.priority < b.priority) {
             return 1;
