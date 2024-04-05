@@ -1,0 +1,15 @@
+@use "./colours.scss" as *;
+
+.schedule-header {
+    border-bottom: solid 2px $orange;
+}
+.schedule-table-header {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.schedule-table {
+    padding: 0;
+}

@@ -1,0 +1,25 @@
+@use "./colours.scss" as *;
+@use "sass:color";
+
+.todo-item {
+    background-color: $background-darker;
+    padding: 0.25rem 1rem;
+    margin: 0.5rem;
+
+    border-left: solid 2px $orange;
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    &:hover {
+        background-color: color.scale($background-darker,$lightness: -10%);
+        border-left: solid 2px color.scale($orange, $lightness: -10%);
+        color: color.scale($text, $lightness: -15%);
+        h3 {
+            text-decoration-line: line-through;
+        }
+        cursor: pointer;
+    }
+}
+

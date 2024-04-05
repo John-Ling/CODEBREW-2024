@@ -1,0 +1,16 @@
+.schedule-header {
+  border-bottom: solid 2px #ff5500;
+}
+
+.schedule-table-header {
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.schedule-table {
+  padding: 0;
+}
+
+/*# sourceMappingURL=schedule_view.css.map */
