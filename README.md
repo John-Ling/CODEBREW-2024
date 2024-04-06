@@ -1,9 +1,9 @@
+<p align="center">
+  <img width="600" alt="logo" src="https://github.com/John-Ling/CODEBREW-2024/assets/100111224/28289577-7360-450e-a248-05640c4b7930">
+</p>
 
-<img width="933" alt="logo" src="https://github.com/John-Ling/CODEBREW-2024/assets/100111224/28289577-7360-450e-a248-05640c4b7930">
 
-
-# Ramble
-## Turning your ramblings into producivity.
+# Ramble: Turn your ramblings into productivity.
 
 CISSA Codebrew hackathon 2024 submission.
 Team Members: John Ling, Han-Fong "Frank" Hsu, Nirav Pandey 
@@ -13,6 +13,7 @@ Ramble is a web app built using ReactJS, Flask and Anthropic's Claude 3 Opus LLM
 __Just type.__
 
 Just type out what you need to do for today doesn't matter how informal or formal it is, serious or light-hearted, coherent or basically garbage.
+Just type about what 
 
 Ramble will then take your text or your "ramble" and discern important tasks from it.
 From that it generates a coherent and clean looking schedule for you to follow complete with ideal start and end times.
